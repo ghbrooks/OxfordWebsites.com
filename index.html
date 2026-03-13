@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home - Oxford Websites</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&family=Poppins:wght@400;500&family=Roboto:wght@400;500;700&family=Open+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== RESET ===== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Open Sans', Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.7;
+      color: #666;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    img { max-width: 100%; height: auto; display: block; }
+
+    /* ===== HEADER ===== */
+    #main-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background-color: rgba(10, 10, 10, 0.3);
+      transition: background-color 0.4s ease;
+    }
+    #main-header.scrolled {
+      background-color: rgba(10, 10, 10, 0.22);
+    }
+    .header-container {
+      max-width: 1080px;
+      width: 80%;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 66px;
+    }
+    .logo_container a {
+      display: flex;
+      align-items: center;
+    }
+    .logo_container img {
+      height: 50px;
+      width: auto;
+    }
+    #top-menu {
+      display: flex;
+      gap: 28px;
+    }
+    #top-menu a {
+      font-size: 14px;
+      color: #fff;
+      transition: opacity 0.3s;
+    }
+    #top-menu a:hover {
+      opacity: 0.7;
+    }
+    #top-menu li.active a {
+      color: #fff;
+    }
+    .mobile-menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 5px;
+    }
+    .mobile-menu-toggle span {
+      width: 24px;
+      height: 2px;
+      background: #fff;
+      transition: 0.3s;
+    }
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      top: 66px;
+      left: 0;
+      width: 100%;
+      background-color: rgba(10, 10, 10, 0.9);
+      padding: 20px 0;
+    }
+    .mobile-menu.open {
+      display: block;
+    }
+    .mobile-menu a {
+      display: block;
+      padding: 12px 30px;
+      color: #fff;
+      font-size: 14px;
+    }
+    .mobile-menu a:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+      background-image: linear-gradient(90deg, #002147 0%, rgba(0,0,0,0) 100%),
+                         url('https://www.oxfordwebsites.com/wp-content/uploads/2024/09/Radcliffe_Camera_Oxford_UK-scaled.jpg');
+      background-size: cover;
+      background-position: center;
+      padding-top: 10vw;
+      padding-bottom: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+    .hero-content {
+      max-width: 1080px;
+      width: 80%;
+      margin: 0 auto;
+      padding-top: 66px;
+    }
+    .hero-divider {
+      height: 48px;
+      background-image: url('https://www.oxfordwebsites.com/wp-content/uploads/2024/10/high-school_48.png');
+      background-repeat: repeat-x;
+      background-position: left top;
+      background-size: auto;
+      margin-bottom: 10px;
+      max-width: 800px;
+    }
+    .hero h1 {
+      font-family: 'Roboto', Helvetica, Arial, sans-serif;
+      font-weight: 500;
+      font-size: 80px;
+      color: #fff;
+      line-height: 1.15;
+      max-width: 800px;
+      margin-bottom: 0;
+    }
+    .hero h2 {
+      font-family: 'Roboto', Helvetica, Arial, sans-serif;
+      font-weight: 500;
+      font-size: 80px;
+      color: #fff;
+      line-height: 1.15;
+      max-width: 800px;
+    }
+
+    /* ===== SERVICE CARDS ROW ===== */
+    .services-row {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      width: 100%;
+      margin-top: 6vw;
+    }
+    .service-card {
+      padding: 60px 30px 40px;
+      background-repeat: repeat-x;
+      background-position: left top;
+      background-size: auto;
+      background-image: url('https://www.oxfordwebsites.com/wp-content/uploads/2024/10/high-school_50.png');
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+    .service-card:hover {
+      transform: translateY(-4px);
+    }
+    .service-card:nth-child(1) { background-color: rgba(245, 201, 102, 0.8); }
+    .service-card:nth-child(2) { background-color: rgba(247, 130, 126, 0.8); }
+    .service-card:nth-child(3) { background-color: rgba(242, 55, 170, 0.8); }
+    .service-card:nth-child(4) { background-color: rgba(31, 63, 168, 0.8); }
+    .service-card:nth-child(5) { background-color: rgba(98, 172, 172, 0.8); }
+    .service-card:nth-child(6) { background-color: rgba(0, 0, 0, 0.8); }
+    .service-card h4 {
+      font-family: 'Roboto', Helvetica, Arial, sans-serif;
+      font-weight: 500;
+      color: #fff;
+      line-height: 1.5;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    .service-card p {
+      color: #fff;
+      line-height: 1.8;
+      font-size: 14px;
+    }
+    .service-card .arrow {
+      margin-top: 20px;
+    }
+    .service-card .arrow img {
+      width: 60px;
+      height: 18px;
+      opacity: 0.8;
+    }
+
+    /* ===== MIDDLE SECTION (Black BG) ===== */
+    .middle-section {
+      background-color: #000;
+      padding: 8vw 0;
+    }
+    .middle-container {
+      max-width: 1080px;
+      width: 80%;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+    .middle-left h2 {
+      font-family: 'Archivo', Helvetica, Arial, sans-serif;
+      font-weight: 700;
+      font-size: 48px;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .middle-left p {
+      color: #e2e2e2;
+      line-height: 1.8;
+      font-family: 'Poppins', Helvetica, Arial, sans-serif;
+      font-size: 16px;
+    }
+
+    /* Right column - feature blocks */
+    .feature-block {
+      margin-bottom: 30px;
+    }
+    .feature-block .icon {
+      width: 32px;
+      height: 32px;
+      margin-bottom: 20px;
+    }
+    .feature-block h5 {
+      font-family: 'Archivo', Helvetica, Arial, sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      color: #fff;
+      line-height: 1.4;
+      margin-bottom: 0;
+    }
+    .feature-block p {
+      color: #e2e2e2;
+      line-height: 1.6;
+      font-family: 'Poppins', Helvetica, Arial, sans-serif;
+      font-size: 14px;
+    }
+
+    /* ===== FOOTER ===== */
+    .site-footer {
+      background-color: #000;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding: 30px 0;
+    }
+    .footer-container {
+      max-width: 1080px;
+      width: 80%;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-copyright {
+      color: #e2e2e2;
+      font-size: 14px;
+    }
+    .social-links {
+      display: flex;
+      gap: 14px;
+    }
+    .social-links a {
+      width: 32px;
+      height: 32px;
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 14px;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .social-links a:hover {
+      background: rgba(255,255,255,0.15);
+      border-color: rgba(255,255,255,0.6);
+    }
+    /* Simple SVG icon styling */
+    .social-links svg {
+      width: 14px;
+      height: 14px;
+      fill: #fff;
+    }
+
+    /* ===== RESPONSIVE: TABLET (<=980px) ===== */
+    @media only screen and (max-width: 980px) {
+      .header-container {
+        width: 90%;
+      }
+      #top-menu {
+        display: none;
+      }
+      .mobile-menu-toggle {
+        display: flex;
+      }
+      .hero h1,
+      .hero h2 {
+        font-size: 40px;
+      }
+      .hero-content {
+        width: 90%;
+      }
+      .services-row {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .service-card {
+        padding: 40px 20px 20px;
+      }
+      .service-card h4 {
+        font-size: 16px;
+      }
+      .middle-container {
+        width: 90%;
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .middle-left h2 {
+        font-size: 32px;
+      }
+      .middle-left p {
+        font-size: 15px;
+      }
+      .feature-block h5 {
+        font-size: 16px;
+      }
+      .footer-container {
+        width: 90%;
+      }
+    }
+
+    /* ===== RESPONSIVE: MOBILE (<=767px) ===== */
+    @media only screen and (max-width: 767px) {
+      .hero {
+        padding-top: 15vw;
+      }
+      .hero h1,
+      .hero h2 {
+        font-size: 24px;
+      }
+      .services-row {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .service-card {
+        padding: 40px 20px 20px;
+      }
+      .service-card h4 {
+        font-size: 14px;
+      }
+      .middle-left h2 {
+        font-size: 20px;
+      }
+      .middle-left p,
+      .feature-block h5,
+      .feature-block p {
+        font-size: 14px;
+      }
+      .footer-container {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+      }
+    }
+
+    /* ===== RESPONSIVE: SMALL MOBILE (<=480px) ===== */
+    @media only screen and (max-width: 480px) {
+      .services-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header id="main-header">
+    <div class="header-container">
+      <div class="logo_container">
+        <a href="#">
+          <img src="https://www.oxfordwebsites.com/wp-content/uploads/2024/10/logo.png" alt="Oxford Websites" id="logo">
+        </a>
+      </div>
+      <nav>
+        <ul id="top-menu">
+          <li class="active"><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="methodology.html">Methodology</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="mobile-menu-toggle" id="mobileToggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="methodology.html">Methodology</a>
+      <a href="services.html">Services</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-divider"></div>
+      <h1>Oxford Websites</h1>
+      <h2>Built in Oxford. Viewed Worldwide.</h2>
+    </div>
+
+    <!-- SERVICE CARDS -->
+    <div class="services-row">
+      <div class="service-card">
+        <h4><strong>Free Consultation &amp; Discovery</strong></h4>
+        <p>Initial consultations to understand client needs and project goals.</p>
+        <div class="arrow">
+          <img src="https://www.oxfordwebsites.com/wp-content/uploads/2024/10/high-school_26.png" alt="">
+        </div>
+      </div>
+      <div class="service-card">
+        <h4><strong>Design &amp; Prototyping</strong></h4>
+        <p>Custom web design services focused on UI/UX.</p>
+        <div class="arrow">
+          <img src="https://www.oxfordwebsites.com/wp-content/uploads/2024/10/high-school_26.png" alt="">
+        </div>
+      </div>
+      <div class="service-card">
+        <h4><strong>Website/App Development</strong></h4>
+        <p>Taking the designs and building them into a functioning website, with regular check-ins.</p>
+        <div class="arrow">
+          <img src="https://www.oxfordwebsites.com/wp-content/uploads/2024/10/high-school_26.png" alt="">
+        </div>
+      </div>
+      <div class="service-card">
+        <h4><strong>Content Creation &amp; SEO</strong></h4>
+        <p>Copywriting, visual content, and multimedia integration.</p>
+        <div class="arrow">
+          <img src="https://www.oxfordwebsites.com/wp-content/uploads/2024/10/high-school_26.png" alt="">
+        </div>
+      </div>
+      <div class="service-card">
+        <h4><strong>Testing &amp; Launch</strong></h4>
+        <p>Usability testing, browser compatibility checks, and performance optimization.</p>
+        <div class="arrow">
+          <img src="https://www.oxfordwebsites.com/wp-content/uploads/2024/10/high-school_26.png" alt="">
+        </div>
+      </div>
+      <div class="service-card">
+        <h4><strong>Ongoing Support &amp; Maintenance</strong></h4>
+        <p>We'll be available to help you maintain and make edits to your site.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MIDDLE SECTION -->
+  <section class="middle-section">
+    <div class="middle-container">
+      <div class="middle-left">
+        <h2>Build in Oxford, Viewed Worldwide</h2>
+        <p>With a strong foundation in Oxford, we create innovative solutions that resonate across the globe. Whether you're looking to elevate your business, brand, or digital presence, our work is crafted with precision and designed to captivate audiences worldwide</p>
+      </div>
+      <div class="middle-right">
+        <div class="feature-block">
+          <img class="icon" src="https://www.oxfordwebsites.com/wp-content/uploads/2024/09/artificial-intelligence-icon-small-02@2x.png" alt="">
+          <h5>Ongoing Support</h5>
+          <p>Maintaining and editing a website can be challenging, but we're here to help you every step of the way. Whether you need complete management of your web presence or just assistance with setting up your emails, we've got you covered.</p>
+        </div>
+        <div class="feature-block">
+          <img class="icon" src="https://www.oxfordwebsites.com/wp-content/uploads/2024/09/artificial-intelligence-icon-small-04@2x.png" alt="">
+          <h5>Personalised Approach</h5>
+          <p>Every web project has its unique challenges. We're here to help you understand how to leverage the tools and resources available online to help your business, blog, or any other project thrive.</p>
+        </div>
+        <div class="feature-block">
+          <img class="icon" src="https://www.oxfordwebsites.com/wp-content/uploads/2024/09/artificial-intelligence-icon-small-06@2x.png" alt="">
+          <h5>Free Consultation</h5>
+          <p>No commitment. Just a conversation about how we can work together.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-copyright">
+        Copyright &copy; 2026 Oxford Websites. All Rights Reserved.
+      </div>
+      <div class="social-links">
+        <a href="#" title="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        </a>
+        <a href="#" title="X (Twitter)">
+          <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="#" title="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+        <a href="#" title="WhatsApp">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const mobileToggle = document.getElementById('mobileToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+    });
+
+    // Header scroll effect
+    const header = document.getElementById('main-header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+  </script>
+</body>
+</html>
